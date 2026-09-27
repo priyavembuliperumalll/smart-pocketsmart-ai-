@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="PocketSmart AI jewelry budget planner with visual suggestions"><title>Jewelry Budget Planner · PocketSmart AI</title><link rel="stylesheet" href="/static/css/app.css"></head><body><div class="topbar"></div>
+<nav class="nav"><div class="container navin">
+<a class="brand home-link" href="/"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19a2 2 0 0 1 2 2v10.5a1.5 1.5 0 0 1-1.5 1.5H6.5A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 8h15.5a1.5 1.5 0 0 1 0 3H17a2 2 0 0 0 0 4h2.5a1.5 1.5 0 0 0 1.5-1.5"/><circle cx="17.5" cy="13" r=".8" fill="currentColor" stroke="none"/></svg></span>PocketSmart <span style="color:#8b7cff">AI</span></a>
+<div class="links">
+<a class="home-link" href="/">Home</a><a href="/features">Features</a><a class="active" href="/planners">Planners</a><a href="/recommendations">Recommendations</a><a href="/dashboard">Dashboard</a><a href="/about">About</a>
+</div>
+<div class="actions"><button class="btn ghost" id="theme" aria-label="Toggle theme">Theme</button><a class="btn" href="/login">Log in</a><a class="btn primary" href="/register">Get Started</a><button class="btn hamb" id="menu">Menu</button></div>
+</div></nav>
+<section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="/">Home</a><span> / </span><a href="/planners">Planners</a><span> / </span><strong>Jewelry Budget Planner</strong></div><h1> Jewelry Budget Planner</h1><p class="muted">Explore more styles, see visual inspiration and keep part of your budget protected.</p></div></section>
+<section class="planner-wrap"><div class="container planner-grid">
+<div class="card form-card"><h2 style="font-family:'Space Grotesk'">Build your jewelry plan</h2><div class="visual-strip"><div class="visual-tile"><img src="https://images.pexels.com/photos/5043048/pexels-photo-5043048.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Jewelry look real photo inspiration" loading="lazy"><span>Jewelry look</span></div><div class="visual-tile"><img src="https://images.pexels.com/photos/28347075/pexels-photo-28347075.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Elegant style real photo inspiration" loading="lazy"><span>Elegant style</span></div><div class="visual-tile"><img src="https://images.pexels.com/photos/6716445/pexels-photo-6716445.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Occasion set real photo inspiration" loading="lazy"><span>Occasion set</span></div></div>
+<form action="/generate-jewelry" method="post" data-planner data-type="jewelry">
+<div class="form-section"><label class="label" for="budget">Total budget</label><div class="budget-input-wrap"><span class="currency-prefix">₹</span><input class="input budget-input" id="budget" name="budget" type="number" min="100" max="10000000" step="100" value="45000" inputmode="numeric" required></div><div class="helper">Keep a reserve for making charges, delivery or last-minute changes.</div><div class="budget-preview" data-budget-preview>
+      <div class="budget-preview-head"><b>Budget details</b><span class="budget-total" data-budget-total>₹45,000</span></div>
+      <div class="budget-preview-grid">
+        <div class="budget-mini"><span>Planned spend</span><b data-budget-spend>₹36,000</b></div>
+        <div class="budget-mini"><span>Protected reserve</span><b data-budget-reserve>₹9,000</b></div>
+        <div class="budget-mini"><span>Currency</span><b>INR ₹</b></div>
+      </div>
+      <div class="budget-preview-grid" data-budget-cells style="margin-top:7px"></div>
+      <div class="quick-budgets">
+        <span style="font-size:11px;color:var(--muted);padding:6px 2px">Quick:</span>
+        <button type="button" class="quick-budget" data-amount="10000">₹10K</button>
+        <button type="button" class="quick-budget" data-amount="25000">₹25K</button>
+        <button type="button" class="quick-budget" data-amount="50000">₹50K</button>
+        <button type="button" class="quick-budget" data-amount="100000">₹1L</button>
+      </div>
+    </div></div>
+<div class="form-section"><label class="label">Occasion</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="occasion" value="Wedding" checked><span> Wedding</span></label><label class="option-chip"><input type="radio" name="occasion" value="Party"><span> Party</span></label><label class="option-chip"><input type="radio" name="occasion" value="Festival"><span> Festival</span></label><label class="option-chip"><input type="radio" name="occasion" value="Date Night"><span> Date Night</span></label><label class="option-chip"><input type="radio" name="occasion" value="Gift"><span> Gift</span></label>
+</div></div>
+<div class="form-section"><label class="label">Style preference</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="style" value="Elegant" checked><span> Elegant</span></label><label class="option-chip"><input type="radio" name="style" value="Traditional"><span> Traditional</span></label><label class="option-chip"><input type="radio" name="style" value="Minimal"><span>◻ Minimal</span></label><label class="option-chip"><input type="radio" name="style" value="Statement"><span> Statement</span></label>
+</div></div>
+<div class="form-section"><label class="label">Metal / finish</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="metal" value="Gold" checked><span> Gold</span></label><label class="option-chip"><input type="radio" name="metal" value="Diamond"><span> Diamond</span></label><label class="option-chip"><input type="radio" name="metal" value="Silver"><span> Silver</span></label><label class="option-chip"><input type="radio" name="metal" value="Mixed"><span> Mixed</span></label>
+</div></div>
+<div class="form-section"><label class="label">What do you want?</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="piece" value="Necklace" checked><span> Necklace</span></label><label class="option-chip"><input type="radio" name="piece" value="Earrings"><span> Earrings</span></label><label class="option-chip"><input type="radio" name="piece" value="Ring"><span> Ring</span></label><label class="option-chip"><input type="radio" name="piece" value="Set"><span> Full set</span></label>
+</div></div>
+<div class="form-section"><label class="label">Mood / mindset</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="mood" value="Elegant" checked><span> Elegant</span></label><label class="option-chip"><input type="radio" name="mood" value="Festive"><span> Festive</span></label><label class="option-chip"><input type="radio" name="mood" value="Romantic"><span> Romantic</span></label><label class="option-chip"><input type="radio" name="mood" value="Minimal"><span>◻ Minimal</span></label><label class="option-chip"><input type="radio" name="mood" value="Bold"><span> Bold</span></label>
+</div></div>
+<div class="form-section"><label class="label">Look & feel</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="look_feel" value="Timeless" checked><span> Timeless</span></label><label class="option-chip"><input type="radio" name="look_feel" value="Trendy"><span> Trendy</span></label><label class="option-chip"><input type="radio" name="look_feel" value="Royal"><span> Royal</span></label><label class="option-chip"><input type="radio" name="look_feel" value="Everyday"><span> Everyday</span></label>
+</div></div>
+<div class="form-section"><label class="label">Shopping level</label><div class="option-grid">
+<label class="option-chip"><input type="radio" name="quality" value="Value" checked><span> Value</span></label><label class="option-chip"><input type="radio" name="quality" value="Balanced"><span> Balanced</span></label><label class="option-chip"><input type="radio" name="quality" value="Premium"><span>⭐ Premium</span></label><label class="option-chip"><input type="radio" name="quality" value="Mix"><span> Smart mix</span></label>
+</div></div>
+<div class="form-section"><label class="label">Optional outfit image</label><input class="input" type="file" name="outfit_image" accept="image/*"><div class="helper">For now this is a visual preference upload; the demo keeps your file on your device.</div></div>
+<button class="btn primary" type="submit" style="width:100%;justify-content:center;margin-top:20px">Generate Visual Jewelry Plan </button></form></div>
+<div class="card result-card" id="results"><span class="eyebrow">Ready when you are</span><h2 style="font-family:'Space Grotesk'">See jewelry ideas with photos</h2><p class="muted">Generate to see multiple looks, estimated budget positions and store comparisons.</p><div class="empty-results"><div style="font-size:42px"></div><b>Your visual shortlist will appear here</b><div class="muted" style="margin-top:6px">Prices are planning estimates — check the retailer before buying.</div></div></div>
+</div></section><footer class="footer"><div class="container footer-grid">
+<div><div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19a2 2 0 0 1 2 2v10.5a1.5 1.5 0 0 1-1.5 1.5H6.5A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 8h15.5a1.5 1.5 0 0 1 0 3H17a2 2 0 0 0 0 4h2.5a1.5 1.5 0 0 0 1.5-1.5"/><circle cx="17.5" cy="13" r=".8" fill="currentColor" stroke="none"/></svg></span>PocketSmart AI</div><p>Budget smarter. Plan beautifully. Compare before you buy.</p></div>
+<div><b>Product</b><a href="/home-planner">Home Planner</a><a href="/party-planner">Party Planner</a><a href="/jewelry-planner">Jewelry Planner</a><a href="/recommendations">Recommendations</a></div>
+<div><b>Company</b><a href="/about">About</a><a href="/how-it-works">How it works</a><a href="/testimonials">Testimonials</a></div>
+<div><b>Account</b><a href="/dashboard">Dashboard</a><a href="/profile">Profile</a><a href="/settings">Settings</a></div>
+</div><div class="container" style="margin-top:30px;font-size:12px">© 2026 PocketSmart AI · Built for smarter everyday decisions.</div></footer>
+<script src="/static/js/app.js"></script></body></html>

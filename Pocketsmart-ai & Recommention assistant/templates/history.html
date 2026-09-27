@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Planner History · PocketSmart AI</title><link rel="stylesheet" href="/static/css/app.css"></head><body>
+<div class="topbar"></div><nav class="nav"><div class="container navin"><a class="brand" href="/"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19a2 2 0 0 1 2 2v10.5a1.5 1.5 0 0 1-1.5 1.5H6.5A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 8h15.5a1.5 1.5 0 0 1 0 3H17a2 2 0 0 0 0 4h2.5a1.5 1.5 0 0 0 1.5-1.5"/><circle cx="17.5" cy="13" r=".8" fill="currentColor" stroke="none"/></svg></span>PocketSmart <span style="color:#8b7cff">AI</span></a><div class="links"><a href="/">Home</a><a href="/features">Features</a><a href="/planners">Planners</a><a href="/recommendations">Recommendations</a><a href="/dashboard">Dashboard</a><a href="/about">About</a></div><div class="actions"><button class="btn ghost" id="theme" aria-label="Toggle theme">Theme</button><a class="btn" href="/login">Log in</a><a class="btn primary" href="/register">Create Account</a><button class="btn hamb" id="menu">Menu</button></div></div></nav>
+<section class="page-hero"><div class="container"><div class="breadcrumbs">Home / History</div><h1>Planner history</h1><p class="muted">Your generated plans are saved in this browser. An account is optional.</p></div></section>
+<section class="section"><div class="container"><div class="card" style="padding:22px"><div id="history-list"></div></div></div></section>
+<footer class="footer"><div class="container footer-grid"><div><div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19a2 2 0 0 1 2 2v10.5a1.5 1.5 0 0 1-1.5 1.5H6.5A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 8h15.5a1.5 1.5 0 0 1 0 3H17a2 2 0 0 0 0 4h2.5a1.5 1.5 0 0 0 1.5-1.5"/><circle cx="17.5" cy="13" r=".8" fill="currentColor" stroke="none"/></svg></span>PocketSmart AI</div><p>Budget smarter. Plan clearly.</p></div></div></footer>
+<script src="/static/js/app.js"></script><script>
+const list=document.getElementById('history-list');
+const username=localStorage.getItem('ps-demo-username')||'';
+function renderHistory(items){
+  if(!items.length){list.innerHTML='<p class="muted">No planner history yet. Open a planner and generate your first plan.</p>';return;}
+  list.innerHTML='<div class="table-wrap"><table class="table"><tr><th>Date</th><th>Plan</th><th>Budget</th><th>User</th></tr>'+items.map(x=>'<tr><td>'+new Date(x.createdAt).toLocaleString()+'</td><td>'+String(x.type||'').replace(/^./,m=>m.toUpperCase())+'</td><td>₹'+Number(x.budget||0).toLocaleString('en-IN')+'</td><td>'+String(x.username||'Guest')+'</td></tr>').join('')+'</table></div>';
+}
+async function loadHistory(){
+  const local=JSON.parse(localStorage.getItem('ps-planner-history')||'[]');
+  renderHistory(local);
+  try{
+    const response=await fetch('/api/history'+(username?'?username='+encodeURIComponent(username):''));
+    if(!response.ok) throw new Error('History request failed');
+    const data=await response.json();
+    if(Array.isArray(data.items)) renderHistory(data.items);
+  }catch(err){ console.warn('Using browser history:',err); }
+}
+loadHistory();
+</script><script>
+const list=document.getElementById('history-list'); const items=JSON.parse(localStorage.getItem('ps-planner-history')||'[]');
+if(!items.length){list.innerHTML='<p class="muted">No planner history yet. Open a planner and generate your first plan.</p>';}else{list.innerHTML='<div class="table-wrap"><table class="table"><tr><th>Date</th><th>Plan</th><th>Budget</th><th>User</th></tr>'+items.map(x=>'<tr><td>'+new Date(x.createdAt).toLocaleString()+'</td><td>'+String(x.type||'').replace(/^./,m=>m.toUpperCase())+'</td><td>₹'+Number(x.budget||0).toLocaleString('en-IN')+'</td><td>'+String(x.username||'Guest')+'</td></tr>').join('')+'</table></div>'}
+</script></body></html>
